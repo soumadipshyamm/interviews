@@ -1,0 +1,75 @@
+ What are the four pillars of OOP?
+✅ Answer:
+
+Encapsulation – Hiding data using access modifiers (public, private, protected).
+Abstraction – Hiding implementation details and showing only the necessary functionality.
+Inheritance – Allowing one class to inherit the properties and methods of another.
+Polymorphism – Allowing methods to have different behaviors based on the object.
+
+
+
+<?php
+// **Encapsulation** – Hiding data using access modifiers (public, private, protected)
+class Vehicle {
+    protected $brand;  // Protected property, accessible in child classes
+
+    public function __construct($brand) {
+        $this->brand = $brand;
+    }
+
+    // Getter method (Encapsulation)
+    public function getBrand() {
+        return $this->brand;
+    }
+}
+
+// **Abstraction** – Hiding implementation details and showing only necessary functionality
+abstract class Car extends Vehicle {
+    protected $model;
+
+    public function __construct($brand, $model) {
+        parent::__construct($brand);
+        $this->model = $model;
+    }
+
+    abstract public function getCarInfo(); // Abstract method (must be implemented in child classes)
+}
+
+// **Inheritance** – Allowing one class to inherit properties and methods of another
+class Sedan extends Car {
+    private $topSpeed;
+
+    public function __construct($brand, $model, $topSpeed) {
+        parent::__construct($brand, $model);
+        $this->topSpeed = $topSpeed;
+    }
+
+    // Implementing abstract method (Abstraction)
+    public function getCarInfo() {
+        return "Brand: " . $this->brand . ", Model: " . $this->model . ", Top Speed: " . $this->topSpeed . " km/h";
+    }
+}
+
+// **Polymorphism** – Allowing methods to have different behaviors based on the object
+class SUV extends Car {
+    private $groundClearance;
+
+    public function __construct($brand, $model, $groundClearance) {
+        parent::__construct($brand, $model);
+        $this->groundClearance = $groundClearance;
+    }
+
+    // Different implementation of getCarInfo (Polymorphism)
+    public function getCarInfo() {
+        return "Brand: " . $this->brand . ", Model: " . $this->model . ", Ground Clearance: " . $this->groundClearance . " mm";
+    }
+}
+
+// Creating objects
+$sedan = new Sedan("Toyota", "Camry", 240);
+$suv = new SUV("Jeep", "Wrangler", 220);
+
+// Displaying details (Polymorphism in action)
+echo $sedan->getCarInfo() . "\n"; // Outputs: Brand: Toyota, Model: Camry, Top Speed: 240 km/h
+echo $suv->getCarInfo() . "\n";   // Outputs: Brand: Jeep, Model: Wrangler, Ground Clearance: 220 mm
+?>
