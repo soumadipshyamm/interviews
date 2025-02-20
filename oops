@@ -73,3 +73,75 @@ $suv = new SUV("Jeep", "Wrangler", 220);
 echo $sedan->getCarInfo() . "\n"; // Outputs: Brand: Toyota, Model: Camry, Top Speed: 240 km/h
 echo $suv->getCarInfo() . "\n";   // Outputs: Brand: Jeep, Model: Wrangler, Ground Clearance: 220 mm
 ?>
+
+
+What is a constructor in PHP OOP?
+✅ Answer:
+A constructor (__construct) is a special method that is automatically called when an object is created. It is used to initialize properties.
+
+class Person {
+    public $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+}
+$person1 = new Person("John");
+echo $person1->name; // Output: John
+
+
+What are access modifiers in PHP OOP?
+✅ Answer:
+Access modifiers control the visibility of properties and methods in a class:
+
+public → Accessible from anywhere.
+private → Accessible only within the class.
+protected → Accessible within the class and its child classes.
+
+What is method overriding in PHP OOP?
+✅ Answer:
+Method overriding occurs when a child class redefines a method inherited from the parent class.
+
+class ParentClass {
+    public function show() {
+        return "Parent Method";
+    }
+}
+class ChildClass extends ParentClass {
+    public function show() {
+        return "Child Method";
+    }
+}
+$obj = new ChildClass();
+echo $obj->show(); // Output: Child Method
+
+
+What is method overloading in PHP?
+✅ Answer:
+PHP does not support true method overloading, but it can be simulated using magic methods (__call).
+
+🔹 Example:
+class Test {
+    public function __call($name, $arguments) {
+        return "Method $name does not exist!";
+    }
+}
+$obj = new Test();
+echo $obj->someMethod(); // Output: Method someMethod does not exist!
+
+
+What is an interface in PHP OOP?
+✅ Answer:
+An interface defines methods that a class must implement, but does not provide implementation itself.
+
+🔹 Example:
+interface Animal {
+    public function makeSound();
+}
+class Dog implements Animal {
+    public function makeSound() {
+        return "Bark";
+    }
+}
+$dog = new Dog();
+echo $dog->makeSound(); // Output: Bark
