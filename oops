@@ -145,3 +145,10 @@ class Dog implements Animal {
 }
 $dog = new Dog();
 echo $dog->makeSound(); // Output: Bark
+
+What is aggregation and association in OOP?
+✅ Answer:
+
+Association: Two classes are related but independent.
+Aggregation: One class owns another but both can exist independently.
+Composition: One class fully depends on another.
