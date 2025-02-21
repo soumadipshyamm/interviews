@@ -1,0 +1,7 @@
+What are the four principles of OOP?
+The four main principles of Object-Oriented Programming (OOP) are:
+
+Encapsulation – Bundling data and methods together.
+Abstraction – Hiding implementation details and exposing only necessary functionality.
+Inheritance – Deriving new classes from existing ones.
+Polymorphism – One interface, multiple implementations.
