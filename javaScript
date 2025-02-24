@@ -1,3 +1,16 @@
+
+Concept	Definition	Example
+Class	Blueprint for objects	class Car { }
+Object	Instance of a class	$myCar = new Car();
+Encapsulation	Hides data, allows controlled access	private $balance; with getBalance()
+Abstraction	Hides implementation details	abstract class Vehicle {}
+Inheritance	One class inherits another	class Dog extends Animal {}
+Polymorphism	Multiple behaviors using the same method	overloading and overriding
+Method Overloading	Same method name, different parameters (Not in PHP)	Simulated using __call()
+Method Overriding	Child class modifies parent method	class Child extends Parent {}
+
+
+
 What are the four principles of OOP?
 The four main principles of Object-Oriented Programming (OOP) are:
 
