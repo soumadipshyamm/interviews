@@ -9,6 +9,12 @@ Polymorphism	Multiple behaviors using the same method	overloading and overriding
 Method Overloading	Same method name, different parameters (Not in PHP)	Simulated using __call()
 Method Overriding	Child class modifies parent method	class Child extends Parent {}
 
+.then()	Handles resolved promises
+.catch()	Catches rejected promises
+.finally()	Runs after resolution/rejection
+Promise.all()	Runs multiple promises together
+Promise.race()	Returns first resolved promise
+async/await	Simplifies promise handling
 
 
 What are the four principles of OOP?
