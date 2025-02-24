@@ -1,0 +1,10 @@
+Key Features:
+✔ Eloquent ORM – Database interactions using models.
+✔ Blade Template Engine – Lightweight and fast templating system.
+✔ Artisan CLI – Command-line tool for automation.
+✔ Routing – Simple and flexible URL routing.
+✔ Middleware – Controls HTTP request processing.
+✔ Authentication & Authorization – Built-in authentication system.
+✔ Queues & Jobs – Asynchronous task execution.
+✔ Caching – Supports Redis, Memcached, etc.
+✔ Event Broadcasting – Real-time notifications using WebSockets.
