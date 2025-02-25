@@ -184,3 +184,210 @@ Here are the answers to your questions:
 ---
 
 Let me know if you need more details on any of these! 🚀
+
+
+
+
+
+
+
+Here are the answers to your questions:
+
+---
+
+## **Laravel Questions**
+
+1. **What databases does Laravel support?**  
+   Laravel supports multiple databases, including:  
+   - MySQL  
+   - PostgreSQL  
+   - SQLite  
+   - SQL Server  
+
+2. **How to define environment variables in Laravel?**  
+   - You can define environment variables in the `.env` file:  
+     ```
+     APP_ENV=local
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=laravel_db
+     DB_USERNAME=root
+     DB_PASSWORD=
+     ```
+
+3. **How to enable maintenance mode in Laravel?**  
+   - Use the Artisan command:  
+     ```
+     php artisan down
+     ```
+   - To disable maintenance mode:  
+     ```
+     php artisan up
+     ```
+
+4. **How to create middleware in Laravel?**  
+   - Generate middleware:  
+     ```
+     php artisan make:middleware CheckUser
+     ```
+   - Define logic in `app/Http/Middleware/CheckUser.php`:  
+     ```php
+     public function handle($request, Closure $next)
+     {
+         if (auth()->user()->is_admin) {
+             return $next($request);
+         }
+         return redirect('/');
+     }
+     ```
+   - Register in `Kernel.php`.
+
+5. **What is seeding?**  
+   - Seeding is used to insert dummy data into the database. Example:  
+     ```php
+     DB::table('users')->insert([
+         'name' => 'John Doe',
+         'email' => 'john@example.com',
+         'password' => bcrypt('password'),
+     ]);
+     ```
+   - Run using:  
+     ```
+     php artisan db:seed
+     ```
+
+6. **Can we disable CSRF for a specific route?**  
+   - Yes, by adding it to the `$except` array in `VerifyCsrfToken.php`:  
+     ```php
+     protected $except = [
+         'payment/webhook',
+     ];
+     ```
+
+7. **How to increase the max upload size without `php.ini` access?**  
+   - Add to `.htaccess`:  
+     ```
+     php_value upload_max_filesize 100M
+     php_value post_max_size 100M
+     ```
+   - Or modify it in the script:  
+     ```php
+     ini_set('upload_max_filesize', '100M');
+     ini_set('post_max_size', '100M');
+     ```
+
+8. **Examples of Global Variables in PHP?**  
+   - `$_GET`, `$_POST`, `$_SESSION`, `$_COOKIE`, `$_SERVER`, `$_FILES`, `$_REQUEST`, `$_ENV`
+
+9. **How to call a third-party API from the frontend?**  
+   - Use JavaScript `fetch()` or Axios:  
+     ```js
+     fetch('https://api.example.com/data')
+         .then(response => response.json())
+         .then(data => console.log(data));
+     ```
+   - Alternatively, use Laravel’s `Http` client:
+     ```php
+     $response = Http::get('https://api.example.com/data');
+     ```
+
+10. **Difference between cURL and AJAX?**  
+    - **cURL** is a PHP library used for server-to-server communication.  
+    - **AJAX** is a frontend JavaScript technique for asynchronous requests.  
+
+11. **What is `robots.txt`?**  
+    - A file that tells search engines which pages to index or not. Example:  
+      ```
+      User-agent: *
+      Disallow: /admin/
+      ```
+
+---
+
+## **MySQL Questions**
+
+1. **What is a Candidate Key?**  
+   - A column (or set of columns) that can uniquely identify a row. It can be chosen as the primary key.
+
+2. **What is a Primary Key?**  
+   - A unique identifier for a table row. Example:  
+     ```sql
+     CREATE TABLE users (
+         id INT PRIMARY KEY,
+         name VARCHAR(255)
+     );
+     ```
+
+3. **What is a Unique Key?**  
+   - Ensures values in a column are unique but allows `NULL` values.
+
+4. **What is Indexing?**  
+   - A technique to speed up queries. Example:  
+     ```sql
+     CREATE INDEX idx_user_email ON users(email);
+     ```
+
+5. **Difference between `TRUNCATE` and `DELETE`?**  
+   - `TRUNCATE` removes all rows **without logging** and resets auto-increment.  
+   - `DELETE` removes rows **with logging** and can have a `WHERE` condition.
+
+6. **Query to select customer names starting with 'B'?**  
+   ```sql
+   SELECT * FROM customers WHERE name LIKE 'B%';
+   ```
+
+7. **Query to select customer names ending with 'B'?**  
+   ```sql
+   SELECT * FROM customers WHERE name LIKE '%B';
+   ```
+
+8. **Default MySQL port and how to change it?**  
+   - Default port: **3306**  
+   - To change it, modify `my.cnf` or `my.ini`:  
+     ```
+     [mysqld]
+     port=3307
+     ```
+
+9. **Query to find duplicate names in a table?**  
+   ```sql
+   SELECT name, COUNT(*) FROM users GROUP BY name HAVING COUNT(*) > 1;
+   ```
+
+10. **Query to select students who joined last year?**  
+    ```sql
+    SELECT * FROM customers 
+    WHERE job = 'student' 
+    AND YEAR(joined_date) = YEAR(CURDATE()) - 1;
+    ```
+
+---
+
+## **Git Questions**
+
+1. **How to reverse the previous commit in Git?**  
+   - Soft reset (keeps changes unstaged):  
+     ```
+     git reset --soft HEAD~1
+     ```
+   - Hard reset (removes changes):  
+     ```
+     git reset --hard HEAD~1
+     ```
+
+---
+
+## **jQuery Questions**
+
+1. **What are escape characters in jQuery?**  
+   - Escape characters help handle special characters in selectors. Example:  
+     ```js
+     $("div[id='my.id']").hide();
+     ```
+   - You can use `\\` to escape special characters.  
+
+---
+
+Let me know if you need any further explanation! 🚀
+
