@@ -8,3 +8,11 @@ Key Features:
 ✔ Queues & Jobs – Asynchronous task execution.
 ✔ Caching – Supports Redis, Memcached, etc.
 ✔ Event Broadcasting – Real-time notifications using WebSockets.
+
+
+
+
+Concept	One-liner Explanation
+Dependency Injection	Inject class dependencies via constructor or resolve them using Laravel’s service container.
+Class Object Construction	Use the app() helper or type-hint the class for automatic instantiation by Laravel.
+Polymorphism	Define an interface, create multiple implementations, and bind them in the service container for flexible dependency resolution.
