@@ -287,3 +287,15 @@ Here are **one-line answers** for your advanced Laravel interview questions:
 20. **Laravel Octane**  
 > *Boosts performance by running Laravel on high-speed servers like Swoole or RoadRunner.*
 
+
+Interface:
+
+"Interface in Laravel defines a contract for classes to implement, ensuring consistency and enabling polymorphism."
+
+Trait:
+
+"Trait in Laravel is used to reuse methods across multiple classes to avoid code duplication."
+
+Observer:
+
+"Observer in Laravel listens to model events (like create, update, delete) and handles logic automatically."
