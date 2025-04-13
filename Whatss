@@ -77,6 +77,9 @@ Here are the answers to your questions:
 15. **What is the Default Template You Use in Laravel?**  
     - Laravel uses Blade as its default templating engine.
 
+** What is the Artisan ***
+   - "Artisan is Laravel's command-line tool that automates tasks like generating code, running migrations, and managing the application."
+
 16. **Uses of `composer.json`?**  
     - It defines dependencies and package configurations in a Laravel project.
 
