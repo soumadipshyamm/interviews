@@ -142,3 +142,83 @@ Here are the answers to your questions:
          'payment/webhook',
      ];
      ```
+
+
+Absolutely! Here's a **one-line answer** for each of your questions — perfect for interview quick-fire rounds:
+
+---
+
+1. **Laravel Service Container:**  
+> "A powerful dependency injection container that manages class dependencies and performs automatic resolution."
+
+2. **Service Provider Bootstrapping:**  
+> "Service providers bootstrap application services and register bindings into the service container."
+
+3. **Facade in Laravel:**  
+> "Facades provide a static interface to classes in the service container while using dynamic resolution behind the scenes."
+
+4. **Singleton vs Bind:**  
+> "Singleton binds a class to a single shared instance, while bind resolves a new instance each time."
+
+5. **Middleware:**  
+> "Middleware filters HTTP requests and responses, and custom middleware can be created using `php artisan make:middleware`."
+
+6. **Route Model Binding:**  
+> "Automatically injects model instances into routes based on route parameters, either implicitly by type-hinting or explicitly using `Route::model()`."
+
+7. **Events and Listeners:**  
+> "Laravel's event system decouples code by dispatching events and handling them via listeners."
+
+8. **Jobs and Queues:**  
+> "Jobs represent units of work pushed to queues for deferred background processing."
+
+9. **Task Scheduling:**  
+> "Laravel uses a fluent `schedule` method inside `app/Console/Kernel.php` to define scheduled tasks, run by `schedule:run`."
+
+10. **Repository Pattern:**  
+> "Separates business logic from data access logic using interfaces and classes for better maintainability."
+
+11. **Broadcasting with Pusher/Socket.io:**  
+> "Laravel Broadcasting allows real-time events to be sent to client-side apps using drivers like Pusher or Socket.io."
+
+12. **hasOneThrough vs. hasManyThrough:**  
+> "HasOneThrough defines a single intermediate relation, while hasManyThrough defines multiple intermediate related models."
+
+13. **Lazy vs. Eager vs. Lazy Eager Loading:**  
+> "Lazy loads on access, eager loads upfront to reduce queries, and lazy eager loading loads after the initial query."
+
+14. **Cache System:**  
+> "Laravel supports multiple cache drivers (Redis, Memcached, etc.) and cache tagging for grouped cache management."
+
+15. **API Rate Limiting:**  
+> "Laravel uses rate limiting to control API request rates via the `ThrottleRequests` middleware."
+
+16. **Policy vs. Gate:**  
+> "Gates are closures for simple auth checks, while policies are classes that organize authorization logic."
+
+17. **Multi-Authentication:**  
+> "Laravel allows multiple authentication guards for managing different user types."
+
+18. **tap() Helper:**  
+> "The `tap()` function allows performing actions on a value and then returning the value."
+
+19. **Encryption and Decryption:**  
+> "Laravel provides built-in encryption services using OpenSSL and AES-256 encryption."
+
+20. **Laravel Octane:**  
+> "Octane boosts Laravel performance by serving requests using high-speed workers like Swoole or RoadRunner."
+
+21. **Sanctum vs. Passport:**  
+> "Sanctum is lightweight for SPAs and simple APIs, while Passport offers full OAuth2 implementation."
+
+22. **Observer Classes:**  
+> "Observers listen for Eloquent model events like creating, updating, or deleting records."
+
+23. **Exception Handler Customization:**  
+> "Customize exception handling in `app/Exceptions/Handler.php` to manage error reporting and rendering."
+
+24. **Dependency Injection:**  
+> "Laravel automatically resolves class dependencies via the service container when type-hinted in constructors."
+
+25. **Environment Configuration Security:**  
+> "Laravel secures sensitive config using `.env` files, optionally encrypted in production."
