@@ -104,6 +104,7 @@ Here are the answers to your questions:
 
 21. **What is Reverse Routing in Laravel?**  
     - Reverse routing generates URLs based on route names.  
+Reverse Routing is a feature in Laravel that allows you to generate URLs or redirects to named routes automatically.
       ```php
       route('user.profile', ['id' => 1]);
       ```
