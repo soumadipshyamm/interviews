@@ -134,4 +134,183 @@ If you want, I can also give you:
 ---
 
 Would you like me to prepare a **Node.js roadmap + project list** for you? 📦🚀  
+
 It’ll help you track your progress! 🌟
+
+
+
+
+
+Here are **high-level, advanced, tricky, real-world Node.js + MongoDB interview questions**, including topics like performance, scaling, architecture, Mongoose internals, optimization, transaction handling, replica sets, indexing, event loop behavior, streaming, clustering, and more.
+Questions are grouped by topic and include *what interviewer expects you to explain*.
+
+---
+
+# ✅ **🔥 ADVANCED NODE.JS INTERVIEW QUESTIONS**
+
+---
+
+## ✅ **Event Loop, Internals & Performance**
+
+1. **Explain the different phases of the Node.js event loop and how they affect I/O performance.**
+2. **What happens when you block the event loop? Give examples of operations that block it.**
+3. **Difference between microtasks (Promise) vs macrotasks (setTimeout)?**
+4. **Why is Node.js single-threaded but still scalable?**
+5. **How Node handles concurrent requests if it has one main thread?**
+6. **What are worker_threads and when would you use them?**
+7. **Difference between child_process.fork() and cluster module?**
+8. **How does Node.js handle DNS lookups?**
+9. **Explain libuv.**
+10. **What is Zero-copy in Node.js? How to implement it using streams?**
+
+---
+
+## ✅ **Architecture & Design Patterns**
+
+11. **Explain layered architecture vs clean architecture in Node.js projects.**
+12. **How do you handle large file uploads (2GB+)?**
+13. **How do you implement rate-limiting without third-party packages?**
+14. **Explain dependency injection in Node.js.**
+15. **How do you handle circular dependencies in Node.js modules?**
+16. **Explain caching layers (Redis, Node cache, in-memory cache).**
+17. **CQRS and Event Sourcing – can you implement them in Node.js?**
+18. **When to use message queues (RabbitMQ/Kafka/SQS) in Node apps?**
+19. **Explain back-pressure and how Node stream solves it.**
+20. **How do you design a real-time chat system with WebSocket scaling (Socket.IO + Redis adapter)?**
+
+---
+
+## ✅ **Security & Hardening**
+
+21. **Why is eval() dangerous in Node.js?**
+22. **Difference between jwt.sign and jwt.verify encryption?**
+23. **How to prevent NoSQL injection?**
+24. **How do you secure Express apps from XSS, CSRF, DOS?**
+25. **How do you implement RBAC/ABAC in a scalable way?**
+26. **Explain OWASP Node.js security best practices.**
+
+---
+
+## ✅ **API Performance Optimization**
+
+27. **What is clustering in Node.js and when should you use it?**
+28. **How do you optimize a heavy API response (>50k records)?**
+29. **Explain pagination strategies: cursor-based vs skip/limit.**
+30. **How do you handle batch processing in Node.js?**
+31. **Explain lazy loading in Node.**
+
+---
+
+---
+
+# ✅ **🔥 ADVANCED MONGODB INTERVIEW QUESTIONS**
+
+---
+
+## ✅ **MongoDB Indexing & Performance**
+
+32. **How MongoDB chooses an index? Explain index selection plan.**
+33. **Compound index rules – which field must come first?**
+34. **Explain covered queries.**
+35. **Difference between sparse index vs partial index vs TTL index.**
+36. **How to detect slow queries using Mongo logs and profiler?**
+37. **Why is skip() slow in MongoDB? Alternatives?**
+38. **Explain multikey indexes.**
+39. **Unique index vs document-level validation.**
+
+---
+
+## ✅ **Aggregation Framework**
+
+40. **Explain $lookup internal working (performance impact).**
+41. **When does MongoDB use blocking stages?**
+42. **Difference between $facet and $bucket?**
+43. **How to use aggregation pipeline for pagination?**
+44. **What is pipeline optimization and memory limit?**
+45. **When does MongoDB spill to disk during aggregation?**
+
+---
+
+## ✅ **Replication, Sharding & Transactions**
+
+46. **Explain replica set architecture and failover.**
+47. **How MongoDB handles write concerns?**
+48. **In which situations would you enable majority write concern?**
+49. **Explain sharding – why, when, and how.**
+50. **Difference between hashed vs range sharding.**
+51. **MongoDB ACID properties implementation – how transaction contexts work.**
+52. **What is the transaction retryable write logic?**
+
+---
+
+## ✅ **Concurrency, Locking & Internals**
+
+53. **How does MongoDB handle locking? Document-level or collection-level?**
+54. **What is WiredTiger storage engine?**
+55. **How are writes journaled/stored?**
+56. **How do MongoDB snapshots work?**
+
+---
+
+---
+
+# ✅ **🔥 NODE + MONGODB PRACTICAL SCENARIO QUESTIONS**
+
+---
+
+## ✅ **Real-time System Design**
+
+57. **Design a real-time ticket-booking system in Node.js + MongoDB.**
+58. **How do you prevent double-booking in highly concurrent write operations?**
+59. **You have 1 million concurrent connections — how do you scale Node?**
+60. **How do you design a leaderboard using MongoDB?**
+61. **How do you sync MongoDB with Elasticsearch?**
+
+---
+
+## ✅ **Complex Transaction Scenarios**
+
+62. **How do you implement two-phase commit in MongoDB?**
+63. **What happens if a transaction fails mid-way?**
+64. **How to maintain idempotency in payment APIs?**
+65. **How do you guarantee data consistency when performing multiple updates?**
+
+---
+
+## ✅ **Error Handling & Observability**
+
+66. **Difference between operational errors vs programmer errors?**
+67. **How do you capture unhandled Promise rejections?**
+68. **Explain structured logging vs unstructured logging.**
+69. **How do you implement distributed tracing in Node?**
+
+---
+
+---
+
+# ✅ **🔥 TRICKY QUESTIONS (Asked by top companies)**
+
+---
+
+## ✅ Difficult Conceptual Traps
+
+70. **Node.js uses V8 — does V8 run multiple threads?**
+71. **MongoDB is schema-less — does it mean no schema validation?**
+72. **Does MongoDB store data in RAM?**
+73. **Explain why .lean() increases performance in Mongoose.**
+74. **Why is ObjectId only 12 bytes?**
+75. **When should we avoid using mongoose middleware?**
+76. **MongoDB supports JOIN? How?**
+77. **What happens when two clients update the same document at same time?**
+
+---
+
+# ✅ **If you want, I can also provide:**
+
+✅ Answers for ALL questions
+✅ 1-line answers for quick revision
+✅ Practical coding challenges
+✅ System design diagrams
+✅ MCQ test for interview exam
+
+Tell me what format you want next.
