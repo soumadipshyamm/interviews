@@ -153,3 +153,872 @@ fs.createReadStream('input.txt').pipe(fs.createWriteStream('output.txt'));
 ---
 
 Would you like me to give you a **“2-minute interview revision sheet”** (a one-page cheat sheet with all the key definitions and sample answers)? It’s perfect before interviews.
+
+
+
+
+
+
+
+🔥 Here are **SUPER tricky, highly technical Node.js + MongoDB interview questions** that interviewers use to check deep understanding, not just memorization. These questions trap even experienced developers.
+
+I’ll give **high-level tricky questions**, mixing concept + hidden edge-case logic.
+
+---
+
+# ✅ 🔥 **TRICKY NODE.JS QUESTIONS (Deep Level)**
+
+---
+
+### ✅ **1. What happens if you call `setTimeout(() => {}, 0)` inside a Promise?**
+
+Trick: Microtasks (Promises) run before macrotasks (setTimeout), even if timeout = 0.
+
+---
+
+### ✅ **2. Why does this code print 3000000000 even though JavaScript can’t handle 64-bit integers?**
+
+```js
+console.log(10 ** 12 * 3);
+```
+
+Reason: JS uses 64-bit floating point, not 64-bit integer. Precision loss happens, but results may “look correct” until threshold.
+
+---
+
+### ✅ **3. Why `process.nextTick()` can freeze event loop?**
+
+Because `nextTick()` queue executes **before** microtasks and can recursively starve the loop.
+
+---
+
+### ✅ **4. Why synchronous crypto hashing kills Node performance?**
+
+Because `crypto.pbkdf2Sync()` blocks **main thread**, not threadpool.
+
+---
+
+### ✅ **5. How many threads Node.js actually uses?**
+
+Trick: NOT 1.
+
+* Main thread
+* Libuv threadpool (default 4 threads)
+* OS threads for async FS
+* V8 threads
+* GC threads
+
+---
+
+### ✅ **6. What happens if an unhandledPromiseRejection occurs and your Node version > 15?**
+
+Process **does NOT exit** by default — it logs error only. Before v15, it crashes.
+
+---
+
+### ✅ **7. Why Mongoose `.populate()` is slow even with indexes?**
+
+Because `populate` runs separate queries and merges data in JS, not on Mongo engine.
+
+---
+
+### ✅ **8. Can you use `await` inside `forEach`? Why not?**
+
+No — `forEach` doesn’t await promises; it runs async code concurrently.
+
+Expected answer: Use `for...of`.
+
+---
+
+### ✅ **9. What is memory leak in Node? Give a real cause.**
+
+Example: `setInterval(() => {}, 1000)` without clearInterval, capturing closures.
+
+---
+
+### ✅ **10. Why a try/catch cannot catch async errors?**
+
+Because try/catch is synchronous. Async errors must be caught with `.catch()` or `await`.
+
+---
+
+### ✅ **11. Why Node.js res.send() after res.json() causes error?**
+
+Because headers already sent. Only one response allowed per request.
+
+---
+
+### ✅ **12. Why Object.freeze() doesn't deeply freeze in JS?**
+
+Because it is shallow freeze. Nested objects still mutable.
+
+---
+
+---
+
+# ✅ 🔥 **TRICKY MONGODB QUESTIONS (Deep Internals)**
+
+---
+
+### ✅ **13. Why is `db.collection.update({})` dangerous?**
+
+Because empty filter updates **all documents**.
+
+---
+
+### ✅ **14. Why `$regex` search is slow even with index?**
+
+Regex starting with wildcard `"^abc"` can use index
+But `"abc"` or `".*abc"` cannot use index → full scan.
+
+---
+
+### ✅ **15. Why Mongo skip() is slow?**
+
+Skip() still scans skipped docs, wasting CPU + I/O.
+
+---
+
+### ✅ **16. Why this query is slow?**
+
+```js
+find({ status: { $ne: "active" } })
+```
+
+Because `$ne` cannot use index → full collection scan.
+
+---
+
+### ✅ **17. How does MongoDB decide which index to use?**
+
+It runs a **query planner** using multi-index comparison and picks lowest score route → cached for future.
+
+---
+
+### ✅ **18. Why this aggregation fails?**
+
+```js
+$unwind: "$orders.items"
+```
+
+If some documents don’t have `orders`, unwind defaults to remove them unless `"preserveNullAndEmptyArrays: true"`
+
+---
+
+### ✅ **19. Why ObjectId is increasing but not strictly sequential?**
+
+ObjectId structure:
+
+* Timestamp
+* Machine ID
+* Process ID
+* Increment counter
+
+So it’s increasing but not purely numeric sorted.
+
+---
+
+### ✅ **20. Why you cannot perform transactions without replica set?**
+
+Transactions require oplog, available only in replica sets.
+
+---
+
+### ✅ **21. Why Mongo deletes are slower than inserts?**
+
+Because it checks index consistency and may need compaction during delete.
+
+---
+
+### ✅ **22. Why large arrays in documents kill performance?**
+
+Because MongoDB creates multi-key indexes, exploding index size and degrading performance.
+
+---
+
+### ✅ **23. Why MongoDB stores numbers as double by default?**
+
+Because BSON uses double unless manually declared as int32/int64.
+
+---
+
+---
+
+# ✅ TRICKY REAL-WORLD COMBINED QUESTIONS (Node + Mongo)
+
+---
+
+### ✅ **24. How do you prevent race conditions when two users try to update same MongoDB document?**
+
+Correct answer: Use `$inc`, `$addToSet`, `$push`, atomic operators OR transactions.
+
+---
+
+### ✅ **25. Why using Mongoose `.save()` in loops causes performance issues?**
+
+Because `.save()` creates a separate connection round-trip per document.
+
+Better: `insertMany()` or `bulkWrite()`.
+
+---
+
+### ✅ **26. Why REST API can return stale data even though Mongo writes are "successful"?**
+
+Because write concern default is `w:1` → not majority acknowledged.
+
+---
+
+### ✅ **27. Why calling res.json() inside transaction commit callback causes memory leak?**
+
+Because Mongo driver returns promises inside callbacks — mixing callback + async style.
+
+---
+
+### ✅ **28. How does Node.js handle 30k simultaneous DB connections?**
+
+It doesn't. Node handles users, not DB connections.
+
+Correct strategy: Use a connection pool.
+
+---
+
+### ✅ **29. Why MongoDB findOne() returns null even when document exists?**
+
+Because:
+
+* Wrong readPreference (e.g., reading from secondary before replication)
+* Document is not committed majority
+* Projection hides fields
+* Type mismatch `"1"` vs `1`
+
+---
+
+### ✅ **30. What is the hidden cost of using timestamps: true in mongoose?**
+
+It adds index creation on updatedAt field → slow startup on large collections.
+
+---
+
+---
+
+# ✅ If you want deeper:
+
+✅ Detailed answers for each
+✅ Coding examples of tricky pitfalls
+✅ Whiteboard system design questions
+✅ MCQ + scenario-based test
+
+Tell me which one you want next.
+
+
+
+
+
+✅ Got it. Here are **brand new, completely different, very advanced and tricky Node.js + MongoDB questions**.
+These are NOT repeated from any previous list — all fresh, deeper, more technical, and extremely interview-focused.
+
+---
+
+# ✅ **🔥 SUPER ADVANCED & TRICKY NODE.JS INTERVIEW QUESTIONS (NEW SET)**
+
+---
+
+## ✅ **1. What happens when you call setTimeout inside setImmediate?**
+
+Explain execution order under different OS event-loop behaviors.
+
+---
+
+## ✅ **2. Why does this log 50 instead of 500?**
+
+```js
+for (var i = 0; i < 10; i++) {
+  setTimeout(() => console.log(i * 5), 0);
+}
+```
+
+---
+
+## ✅ **3. Why does Node.js sometimes skip setInterval callbacks?**
+
+Explain event loop starvation.
+
+---
+
+## ✅ **4. How does Node execute a Promise that contains heavy synchronous logic inside then()?**
+
+Example:
+
+```js
+Promise.resolve().then(() => while(true){});
+```
+
+---
+
+## ✅ **5. How does Node.js handle TCP sockets vs WebSockets?**
+
+Explain OS kernel involvement, epoll, and libuv.
+
+---
+
+## ✅ **6. Why does waiting for a large file download block other routes in Express unless streamed?**
+
+Explain synchronous buffering + RAM pressure.
+
+---
+
+## ✅ **7. What happens if process.nextTick() recursively calls itself?**
+
+Explain starvation of event loop.
+
+---
+
+## ✅ **8. Why does worker_thread crash if you pass a huge JSON object using parentPort.postMessage()?**
+
+Explain structured cloning algorithm.
+
+---
+
+## ✅ **9. Why is cluster.fork() dangerous with shared in-memory cache?**
+
+Data inconsistency between processes.
+
+---
+
+## ✅ **10. What happens when a Node.js process reaches max call stack size?**
+
+Explain stack overflow error and memory regions.
+
+---
+
+---
+
+# ✅ **🔥 SUPER ADVANCED & TRICKY MONGODB QUESTIONS (NEW SET)**
+
+---
+
+## ✅ **11. Why does this query return slower when filtering by "or" vs "and"?**
+
+```js
+db.users.find({
+  $or: [{ age: 20 }, { city: "Delhi" }]
+});
+```
+
+Explain index intersection.
+
+---
+
+## ✅ **12. Why does inserting documents with dynamic fields reduce performance?**
+
+Explain lack of fixed schema → fragmentation.
+
+---
+
+## ✅ **13. Why is $regex slow even with an index?**
+
+Explain prefix constraint.
+
+---
+
+## ✅ **14. What happens if two documents produce same ObjectId timestamp at same millisecond?**
+
+Explain per-process increment counter.
+
+---
+
+## ✅ **15. Why does MongoDB sometimes return documents in unexpected order even after sorting?**
+
+Explain memory disk spill + lack of index for sort.
+
+---
+
+## ✅ **16. Why does $unwind on a large array crash queries?**
+
+Explain cardinality explosion + RAM usage.
+
+---
+
+## ✅ **17. Why does this unique index NOT prevent duplicates?**
+
+```js
+db.users.createIndex({ email: 1 }, { unique: true, partialFilterExpression: { email: { $exists: true } } })
+```
+
+Explain documents with email null behave differently.
+
+---
+
+## ✅ **18. Why is $lookup slow on unsharded collections when querying a sharded cluster?**
+
+---
+
+## ✅ **19. Why does updateMany on large collection block writes temporarily?**
+
+Explain collection-level locking during metadata changes.
+
+---
+
+## ✅ **20. What happens when your MongoDB aggregation pipeline exceeds 100MB memory limit?**
+
+Disk spill → temporary files → slow.
+
+---
+
+---
+
+# ✅ **🔥 COMBINED NODE.JS + MONGODB REAL-WORLD TRICKY QUESTIONS (NEW SET)**
+
+---
+
+## ✅ **21. How does Node.js handle MongoDB connection pooling under high concurrency?**
+
+Explain maxPoolSize, minPoolSize, waitQueueTimeout.
+
+---
+
+## ✅ **22. Why does transaction performance degrade in a replica set?**
+
+Explain oplog blocking + write concern majority.
+
+---
+
+## ✅ **23. How does MongoDB handle writes when a replica set election occurs?**
+
+Temporary write freeze, primary unavailable.
+
+---
+
+## ✅ **24. Why do large JSON responses slow down Node.js?**
+
+Explain:
+
+* Serialization cost
+* Chunked transfer
+* RAM buffer
+
+---
+
+## ✅ **25. Why does increasing PM2 cluster workers sometimes REDUCE performance?**
+
+Because MongoDB connection pool gets saturated.
+
+---
+
+## ✅ **26. Why does this code lead to race conditions?**
+
+```js
+const user = await User.findById(id);
+user.balance += amount;
+await user.save();
+```
+
+---
+
+## ✅ **27. How to guarantee atomic decrement of stock?**
+
+Use:
+
+```js
+$inc: { stock: -1 }
+```
+
+inside transaction or optimistic lock.
+
+---
+
+## ✅ **28. Why does high CPU usage spike when converting MongoDB large aggregation result into JavaScript objects?**
+
+Explain BSON → JS conversion overhead.
+
+---
+
+## ✅ **29. Why do Node streams sometimes emit "Unhandled 'error' event"?**
+
+Missing error listeners → default throw.
+
+---
+
+## ✅ **30. Why does your API freeze when 1 request is doing bcrypt.hashSync()?**
+
+Explain synchronous CPU bound.
+
+---
+
+---
+
+# ✅ If you want, I can generate:
+
+🔥 50 more questions
+🔥 Only tricky coding questions
+🔥 Real-world scenario case studies
+🔥 Questions with answers
+🔥 Multiple-choice + explanations
+🔥 Interview cheat sheet
+
+Tell me what type you want next.
+
+
+
+
+
+🔥 **Here are extremely advanced REAL-WORLD Node.js + MongoDB scenario-based interview case studies**
+These force you to think like a senior engineer solving actual production failures, race conditions, scaling issues, and architectural traps.
+
+All problems are designed exactly like **FAANG + high-level startup interviews**.
+
+---
+
+# ✅ **🔥 CASE STUDY 1 — Race Condition in Payment System**
+
+### 💥 Problem
+
+You have a wallet system:
+
+```js
+wallet.balance += 100;
+await wallet.save();
+```
+
+Users rapidly call the API → double credits, negative balance issues.
+
+### ❓ Interviewer asks:
+
+* What’s the exact bug?
+* How do you fix it?
+* How to guarantee idempotency?
+
+### ✅ Expected answer direction:
+
+* Race condition between read + write
+* Use atomic `$inc`, transactions, unique tokens
+* Use idempotency keys
+* Locking (pessimistic with Redis or optimistic using `versionKey`)
+
+---
+
+# ✅ **🔥 CASE STUDY 2 — MongoDB High CPU Usage After Deploy**
+
+### 💥 Problem
+
+After deploying a new version, MongoDB CPU goes 90%+
+Dashboard queries become extremely slow.
+
+### 🤔 What changed?
+
+You added:
+
+```js
+User.find({ email: { $regex: searchTerm } })
+```
+
+### ❓ Interviewer asks:
+
+* Why is CPU spiking?
+* Why is index not used?
+* What’s the proper fix?
+
+### ✅ Expected answer direction:
+
+* Regex without prefix → full collection scan
+* Create a text index / prefix regex
+* Use `$regex: '^search'` OR `$text: { $search: ... }`
+* Use a separate search engine (Elastic)
+
+---
+
+# ✅ **🔥 CASE STUDY 3 — Node.js Event Loop Blocking**
+
+### 💥 Problem
+
+One route blocks all other requests:
+
+```js
+app.get('/report', (req, res) => {
+  const data = bcrypt.hashSync("password", 15);
+  res.send("Done");
+});
+```
+
+### ❓ Interviewer asks:
+
+* What happens internally?
+* Why are other endpoints slow?
+* How to fix?
+
+### ✅ Expected answer direction:
+
+* CPU-bound synchronous call blocks event loop
+* Move heavy compute to worker_threads / asynchronous hashing
+* Horizontal scaling
+
+---
+
+# ✅ **🔥 CASE STUDY 4 — MongoDB Duplicate Orders Under High Load**
+
+### 💥 Problem
+
+Millions of order placements → duplicate order creation.
+
+### ❓ Interviewer asks:
+
+* Why do duplicates occur?
+* Does MongoDB write concern fix it?
+* What’s the best prevention?
+
+### ✅ Expected answer direction:
+
+* Two parallel requests cause duplicate insert
+* Unique index on orderId
+* Use transactions + distributed locks
+* Retry mechanism on duplicate key error
+
+---
+
+# ✅ **🔥 CASE STUDY 5 — API Suddenly Crashes With “heap out of memory”**
+
+### 💥 Problem
+
+Logs show:
+
+```
+JavaScript heap out of memory
+```
+
+Code:
+
+```js
+const users = await User.find({});
+```
+
+### ❓ Interviewer asks:
+
+* What caused the crash?
+* Why did GC fail?
+* How to fix?
+
+### ✅ Expected answer direction:
+
+* Loading entire DB into RAM
+* Pagination
+* Use cursor/stream
+* Use projection
+* Avoid huge JSON stringify
+
+---
+
+# ✅ **🔥 CASE STUDY 6 — Slow Aggregation Pipeline in Production**
+
+### 💥 Problem
+
+Aggregation takes 5+ seconds after adding a $lookup.
+
+### ❓ Interviewer asks:
+
+* Why did $lookup slow it down?
+* How to optimize?
+
+### ✅ Expected answer direction:
+
+* Lookup with billions of documents
+* Add index on foreignField
+* Move to pipeline stage early
+* Use `pipeline` lookup not legacy localField/foreignField
+* Use sharding mapping
+
+---
+
+# ✅ **🔥 CASE STUDY 7 — Lost WebSocket Messages in Clustered Setup**
+
+### 💥 Problem
+
+Socket.io messages not reaching all clients after enabling PM2 cluster.
+
+### ❓ Interviewer asks:
+
+* Why does clustering break WebSockets?
+* How to fix global message distribution?
+
+### ✅ Expected answer direction:
+
+* Each worker has separate memory
+* Use Redis adapter for socket.io
+
+```
+const { createAdapter } = require('@socket.io/redis-adapter');
+```
+
+---
+
+# ✅ **🔥 CASE STUDY 8 — High Database Connections Usage**
+
+### 💥 Problem
+
+MongoDB shows 5,000+ connections. Server slows down.
+
+### ❓ Interviewer asks:
+
+* Why are connections leaking?
+* How to fix?
+
+### ✅ Expected answer direction:
+
+* New connection created on every API request
+* Use global connection pool
+* Disable keepAlive false
+* Use single mongoose.connect() per app
+
+---
+
+# ✅ **🔥 CASE STUDY 9 — Query Returns Wrong Results After Sharding**
+
+### 💥 Problem
+
+After sharding a collection, some queries return incomplete results.
+
+### ❓ Interviewer asks:
+
+* Why?
+* How to fix?
+
+### ✅ Expected answer direction:
+
+* Query not including shard key
+* Mongos doesn’t route correctly
+* Add shard key condition
+* Reshard if needed
+
+---
+
+# ✅ **🔥 CASE STUDY 10 — Server Stalls During File Uploads**
+
+### 💥 Problem
+
+Users report slow uploads. API hangs.
+
+### ❓ Interviewer asks:
+
+* Why is Express freezing?
+* How to fix huge file upload handling?
+
+### ✅ Expected answer direction:
+
+* BodyParser buffering whole file
+* Must use streaming + multer + S3 signed URLs
+* Avoid storing in memory
+
+---
+
+# ✅ **🔥 CASE STUDY 11 — Large Aggregation Pipeline Exceeds Memory Limit**
+
+### 💥 Problem
+
+Aggregation fails:
+
+```
+Exceeded memory limit for $group
+```
+
+### ❓ Interviewer asks:
+
+* Why?
+* How to fix?
+
+### ✅ Expected answer direction:
+
+* 100MB limit
+* Use `allowDiskUse: true`
+* Add indexes
+* Move $match early
+* Reduce cardinality
+
+---
+
+# ✅ **🔥 CASE STUDY 12 — Node.js Server CPU Spikes Under Load**
+
+### 💥 Problem
+
+During stress test, CPU hits 100% even though API is mostly I/O based.
+
+### ❓ Interviewer asks:
+
+* Why?
+* What tools to diagnose?
+
+### ✅ Expected answer direction:
+
+* Hidden CPU tasks (JSON parsing, encryption, compression)
+* Use `clinic.js`, `node --prof`, flame graph
+* Offload heavy tasks
+
+---
+
+# ✅ **🔥 CASE STUDY 13 — Lost Data After Restarting Node Server**
+
+### 💥 Problem
+
+In-memory cache lost after restart → wrong totals.
+
+### ❓ Interviewer asks:
+
+* Why did this happen?
+* Best solution?
+
+### ✅ Expected answer direction:
+
+* Memory cache not persistent
+* Use Redis/Memcached
+* Persistent layer required
+
+---
+
+# ✅ **🔥 CASE STUDY 14 — Timezone Bug in Reports**
+
+### 💥 Problem
+
+Dates off by 5.5 hours in India.
+
+### ❓ Interviewer asks:
+
+* Why?
+* How fix?
+
+### ✅ Expected answer direction:
+
+* MongoDB stores UTC
+* Node prints local timezone differently
+* Use moment-timezone or Day.js
+* Convert UTC at API output stage
+
+---
+
+# ✅ **🔥 CASE STUDY 15 — Deadlock in Transaction**
+
+### 💥 Problem
+
+Two microservices using MongoDB transactions → deadlock.
+
+### ❓ Interviewer asks:
+
+* Why deadlock occurs?
+* How to prevent?
+
+### ✅ Expected answer direction:
+
+* Opposite lock order
+* Retry transaction
+* Use consistent ordering
+* Split batch operations
+
+---
+
+---
+
+# ✅ Want more?
+
+✅ 15 more ultra-advanced scenarios
+✅ Scenarios with code + solution
+✅ Tricky multiple-choice version
+✅ Full answer key
+
+Tell me what next.
