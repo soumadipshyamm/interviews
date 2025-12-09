@@ -1,0 +1,64 @@
+The dial starts by pointing at 50.
+The dial is rotated L68 to point at 82.
+The dial is rotated L30 to point at 52.
+The dial is rotated R48 to point at 0.
+The dial is rotated L5 to point at 95.
+The dial is rotated R60 to point at 55.
+The dial is rotated L55 to point at 0.
+The dial is rotated L1 to point at 99.
+The dial is rotated L99 to point at 0.
+The dial is rotated R14 to point at 14.
+The dial is rotated L82 to point at 32.
+
+
+		     0
+		82
+	    75		25
+		
+		   50
+
+50-68= 	-18%100 =  82
+82-30=52%100
+52+48=100%100=0
+0-5=95%100
+95+60==155%100=55
+55-55=0%100
+0-1=99%100
+99-99=0%100
+0+14=113%100=14
+14-82=68%100
+
+
+function findPassword(data){
+let start=50;
+
+value=data.split("")
+potionDials=toLowerCase(lvalue[0]);
+rotated=potionDials.slice(1).join("")
+if(potionDials==l){
+  result=(start-rotated)%100;
+if(result==0){
+	start=result
+}
+
+}elseif(potionDials==r){
+  result=(start+rotated)%100;
+if(result==0){
+	start=result
+}
+
+}
+}
+
+findPassword(L70)
+
+
+
+
+
+
+
+
+
+
+
