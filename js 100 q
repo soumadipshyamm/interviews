@@ -308,6 +308,25 @@ function removeRepeatedString (str) {
     }
     return first;
 }
+
+
+  //   //  return [...new Set(str)].join('');
+  // console.log(str);
+
+
+  // let isExites = {};
+  // let result = "";
+
+  // for (let i = 0; i < str.length; i++) {
+  //   let char = str[i];
+  //   console.log(char);
+
+  //   if (!isExites[char]) {
+  //     result += char
+  //     isExites[char] = true;
+  //   }
+  // }
+  // return result;
 **************************************************************************
 Find the longest word in a sentence.
 function longestWord ( sentence ) {
