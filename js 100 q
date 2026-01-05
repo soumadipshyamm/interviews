@@ -359,6 +359,8 @@ function longestWord ( sentence ) {
   // });
   // return wordLegnt[0];
 **************************************************************************
+Convert a string to title case.
+
 var capitalizeTitle = function(title) {
     const strArr = title.toLowerCase().split(' ')
     const titleCasedstr = strArr.map(( el) => {
@@ -372,6 +374,7 @@ var capitalizeTitle = function(title) {
 };
 
 **************************************************************************
+Implement your own trim() logic.
 
 function customTrimLoop(str) {
   let start = 0;
@@ -386,6 +389,7 @@ function customTrimLoop(str) {
 }
 
 **************************************************************************
+Reverse an array without using reverse().
 
 arr2 = []
 arr = [1,2,3,4,5]
@@ -397,12 +401,14 @@ for(let i = arr.length - 1; i >= 0; --i) {
 console.log(arr2)
 
 **************************************************************************
+Find the largest number in an array.
 
 arr.sort((a, b) => a - b)
 
 console.log(arr[arr.length - 1])
 
 **************************************************************************
+Find the smallest number in an array.
 
 arr.sort((a, b) => a - b)
 
