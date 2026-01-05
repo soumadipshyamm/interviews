@@ -415,3 +415,68 @@ arr.sort((a, b) => a - b)
 console.log(arr[0])
 
 **************************************************************************
+Find the second largest number in an array.
+
+arr.sort((a, b) => a - b)
+arr2 = [...new Set(arr)]
+console.log(arr2[arr2.length - 2])
+
+let max = -Infinity;
+let second_max = -Infinity;
+
+for(let el of arr) {
+    if(el > max) {
+        second_max = max;
+        max = el;
+    }
+    if(el > second_max && el < max) {
+        second_max = el;
+    }
+}
+
+console.log(second_max)
+
+**************************************************************************
+Find the missing number from a sequence.
+
+const findMissingnumber = ( arr ) => {
+    const len = arr.length + 1;
+    const first = arr[0];
+    const last = arr[len - 1];
+    const totalSum = len*(len + 1) /2;
+    const arrSum = arr.reduce((a, b) => a + b, 0);
+    return totalSum - arrSum;
+}
+
+**************************************************************************
+Remove duplicates from an array.
+
+[...new Set(arr)]
+Or
+let arr2 = arr.reduce((a, b) => a[b] = a[b] ? a[b] + 1 : 0, {});
+arr2= Object.keys(arr2).map(Number)
+
+let arr2 = []
+for (el of arr ) {
+    if(!arr2.includes(el))
+        arr2.push(el)
+}
+
+**************************************************************************
+Flatten a nested array (multi-level).
+
+const arr3 = []
+const flattenArray = ( arr ) => {
+    for(let el of arr) {
+        if(Array.isArray(el)) {
+            flattenArray(el);
+        } else {
+            console.log(el);
+            arr3.push(el);
+        }
+    }
+}
+
+**************************************************************************
+Chunk an array into groups of size N.
+Mathai dhukche na
