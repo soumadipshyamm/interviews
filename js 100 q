@@ -487,3 +487,137 @@ const chunkedData = chunkArray(dataArray, chunkSize);
 
 console.log(chunkedData);
 // Output: [ [1, 2, 3], [4, 5, 6], [7, 8, 9], [10] ]
+
+
+**************************************************************************
+
+
+
+
+
+
+
+
+const chunkArray = (array, size) => {
+  const result = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+};
+
+const data = [1, 2, 3, 4, 5, 6, 7, 8];
+console.log(chunkArray(data, 3)); 
+// Output: [[1, 2, 3], [4, 5, 6], [7, 8]]
+}
+
+///////////////////////////////
+const c = [...a, ...b];
+
+return [...new Set(c)].sort((a,b)=>a-b)
+///////////////////////////////////////////////
+function unions(a, b) {
+  let c = [];
+
+  // 1. Add all elements from 'a' that aren't already in 'c'
+  for (let i = 0; i < a.length; i++) {
+    if (!c.includes(a[i])) {
+      c.push(a[i]);
+    }
+  }
+
+  // 2. Add all elements from 'b' that aren't already in 'c'
+  for (let j = 0; j < b.length; j++) {
+    if (!c.includes(b[j])) {
+      c.push(b[j]);
+    }
+  }
+
+// Bubble Sort Loop
+  for (let i = 0; i < c.length; i++) {
+    for (let j = 0; j < c.length - 1 - i; j++) {
+      if (c[j] > c[j + 1]) {
+        // Swap elements
+        let temp = c[j];
+        c[j] = c[j + 1];
+        c[j + 1] = temp;
+      }
+    }
+  }
+  return c;
+
+  return c;
+}
+
+let a = [1, 2, 3, 4];
+let b = [3, 4, 5, 6];
+console.log(unions(a, b)); 
+// Output: [1, 2, 3, 4, 5, 6]
+
+*************************************************************************************
+
+function insertset(a, b) {
+  let c = [];
+  for (let i = 0; i < a.length; i++) {
+    for (let j = 0; j < b.length; j++) {
+      if (a[i] === b[j]) {
+        c.push(a[i]);
+      }
+    }
+  }
+  return c;
+}
+
+let a = [1, 2, 3, 4];
+let b = [3, 4, 5, 6];
+
+let result = insertset(a, b);
+console.log(result);
+
+////////////////
+intersect(a, b) {
+        // code here
+        const d = new Set(a)
+        const e = new Set(b)
+        let c = []
+        for(let el of d) {
+            if(e.has(el) && !c.includes(el)){
+                c.push(el)
+            }
+        }
+        return c
+    }
+/////////////////
+
+const setA = new Set([1, 2, 3]);
+const setB = new Set([2, 3, 4]);
+const result = [...setA.intersection(setB)]; // [2, 3]
+***************************************************************************
+k=2;
+len= arr.length - 1;
+x=((k%len)+k)%len
+arr.slice(x).concat(arr.slice(0, x))
+
+
+
+
+
+
+for(i=0;i<2;++i){
+    const c = arr.pop()
+    console.log(c)
+    arr.unshift(c)
+}
+
+console.log(arr)
+
+
+
+let obj = {}
+for (let el of arr)
+    {
+        obj[el] = obj[el] ? obj[el] + 1 : 1
+    }
+
+
+
